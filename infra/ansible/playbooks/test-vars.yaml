@@ -1,0 +1,17 @@
+---
+- name: Test variables
+  hosts: control
+  gather_facts: false
+
+  tasks:
+    - name: Show k3s_version
+      debug:
+        var: k3s_version
+
+    - name: Show control_plane_ip
+      debug:
+        var: control_plane_ip
+
+    - name: Show k3s_server_url
+      debug:
+        var: k3s_server_url

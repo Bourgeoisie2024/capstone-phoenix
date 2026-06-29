@@ -1,0 +1,15 @@
+---
+- name: Get node token from control plane
+  shell: sudo cat /var/lib/rancher/k3s/server/node-token
+  delegate_to: control-plane
+  register: control_node_token
+  run_once: true
+
+- name: Install K3s agent
+  shell: curl -sfL https://get.k3s.io | sh -
+  environment:
+    K3S_URL: "{{ k3s_server_url }}"
+    K3S_TOKEN: "{{ control_node_token.stdout }}"
+    INSTALL_K3S_VERSION: "{{ k3s_version }}"
+  args:
+    creates: /usr/local/bin/k3s-agent

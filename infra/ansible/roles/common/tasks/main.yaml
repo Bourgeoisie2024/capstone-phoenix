@@ -1,0 +1,29 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Upgrade installed packages
+  apt:
+    upgrade: dist
+
+- name: Install common packages
+  apt:
+    name:
+      - curl
+      - git
+      - vim
+      - unzip
+    state: present
+
+- name: Disable swap immediately
+  shell: |
+    swapoff -a
+  changed_when: false
+
+- name: Remove swap from fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*swap.*)$'
+    replace: '# \1'

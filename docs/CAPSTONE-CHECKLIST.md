@@ -1,275 +1,3 @@
-TS-Academy DevOps Capstone Checklist
-Repository Setup
-
-- [x] Fork repository (done)
-- [x] Clone repository (done)
-- [x] Create capstone-build branch (done)
-- [x] Configure GitHub remote (done)
-- [x] Push branch (done)
-
-Environment Verification
-
-- [x] AWS CLI working (done)
-- [x] Terraform installed (done)
-- [x] Ansible installed (done)
-- [x] Docker installed (done)
-- [x] kubectl installed (done)
-- [x] Create CAPSTONE-CHECKLIST.md (done)
-
-After we clean up the old infrastructure, add this section near the top:
-
-Legacy Infrastructure Cleanup
-
-- [x] Investigate running EC2 instances (done)
-- [x] Locate Terraform state (done)
-- [x] Review destroy plan (done)
-- [x] Destroy legacy infrastructure (done)
-- [x] Verify AWS cleanup (done)
-- [x] Verify AWS account access (done)
-- [x] Verify Route53 hosted zone (done)
-
-Infrastructure (15 Points)
-
-    Create S3 backend bucket
-
-    Create DynamoDB lock table
-
-    Configure Terraform remote state
-
-    Create VPC
-
-    Create Security Groups
-
-    Create 1 Control Plane EC2
-
-    Create 2 Worker EC2
-
-    Terraform outputs working*
-
-## Infrastructure Phase
-
-### Terraform Backend
-
-- [x] Create S3 state bucket
-- [x] Enable bucket versioning
-- [x] Enable bucket encryption
-- [x] Create DynamoDB lock table
-- [x] Verify remote-state resources
-
-### Terraform Structure
-
-- [x] Create infra/terraform
-- [x] Create modules/network
-- [x] Create modules/security
-- [x] Create modules/compute
-- [x] Create modules/dns
-- [x] Create Terraform root files
-
-Current score progress:
-
-Preparation      ✓
-Backend          ✓
-Terraform Layout ✓
-
-Next:
-Networking
-
-### Remote State
-
-- [x] Create S3 backend bucket
-- [x] Create DynamoDB lock table
-- [x] Configure Terraform backend
-- [x] Initialize remote state
-- [x] Verify backend connectivity
-
-Current progress:
-
-Preparation            ✓
-Terraform Backend      ✓
-Remote State           ✓
-
-Next:
-Network Module
-
-## Network Module
-
-- [x] Create network module directory
-- [x] Create network variables file
-- [x] Create network outputs file
-- [x] Create network main file
-- [x] Create VPC definition
-- [x] Create Internet Gateway
-- [x] Create Public Subnets
-- [x] Create Route Table
-- [x] Create Route Associations
-- [x] Remove hardcoded Availability Zones
-- [x] Dynamic Availability Zones
-- [x] Validate configuration
-- [x] Review Terraform plan
-- [x] Deploy networking resources
-- [x] Verify networking resources
-- [x] Export network outputs
-- [x] Root Outputs
-- [x] Parameterized VPC CIDR in variables.tf
-- [x] Network verification
-
-Next milestone:
-
-### Security
-- [x] Control Plane Security Group
-- [x] Worker Security Group
-- [x] Security Outputs
-- [x] Terraform Output Added
-
-After that:
-
-### Access Prerequisites
-- [x] SSH Key Pair Created (capstone-devops)
-- [x] Private Key Secured Locally
-
-### Compute
-- [x] Dynamic Ubuntu AMI Lookup (Dynamic Ubuntu 22.04 AMI)
-- [x] SSH Key Pair Created
-- [x] Control Plane EC2
-- [x] Worker 1 EC2
-- [x] Worker 2 EC2
-- [x] Terraform Outputs Added
-
-## Infrastructure Score Progress
-
-### Infrastructure Requirements:
-
-Backend      ✅
-Network      ✅
-Security     ✅
-Compute      ✅
-
-Current Infrastructure Completion:
-
-~90% Complete
-
-## Validation
-- [x] Terraform Outputs
-- [x] Terraform State Healthy
-- [x] Instances Running
-- [x] SSH Validation (SSH Access Confirmed to All Nodes)
-
-Infrastructure Phase Complete ✅
-
-### Ansible Readiness
-- [ ] Terraform Outputs
-- [ ] Inventory Generation
-- [ ] SSH Verification
-
-Cluster Bring-Up (10 Points)
-
-    Hardening role
-
-    k3s-server role
-
-    k3s-agent role
-
-    Cluster nodes join successfully
-
-    kubeconfig retrieved locally
-
-    kubectl get nodes shows Ready
-
-Core Kubernetes (30 Points)
-
-    Namespace
-
-    ConfigMap
-
-    Secret
-
-    PostgreSQL StatefulSet
-
-    PVC
-
-    Migration Job
-
-    Backend Deployment
-
-    Frontend Deployment
-
-    Backend Service
-
-    Frontend Service
-
-    Resource Requests
-
-    Resource Limits
-
-    Startup Probes
-
-    Readiness Probes
-
-    Liveness Probes
-
-    Pod Distribution Across Nodes
-
-    Rolling Updates
-
-    Ingress
-
-    cert-manager
-
-    Let's Encrypt TLS
-
-Advanced Features (15 Points)
-
-    HPA
-
-    NetworkPolicy
-
-    Observability (Prometheus/Grafana)
-
-GitOps (10 Points)
-
-    Install ArgoCD
-
-    Create Application
-
-    Auto Sync
-
-    Demonstrate GitOps Deployment
-
-Documentation (10 Points)
-
-    ARCHITECTURE.md
-
-    RUNBOOK.md
-
-    COST.md
-
-Evidence
-
-    nodes-ready.png
-
-    pods-spread.png
-
-    tls-valid.png
-
-    pvc-persist.log
-
-    zero-downtime.log
-
-    hpa-scale.png
-
-    argocd-synced.png
-
-    failover.png
-
-Submission
-
-    Final review
-
-    Demo rehearsal
-
-    Submit before July 4
-
-
 #### TS-Academy DevOps Capstone Project Checklist
 Goal
 
@@ -525,45 +253,110 @@ Connectivity
 
     Run ansible all -m ping
 
-    Verify Connectivity
+    Verify Connectivity ✅
+    
+## We can now officially mark:
+
+Terraform Infrastructure   ✅
+Ansible Foundation         ✅
+Server Preparation         ✅
+K3s Role Structure         ✅
+Infrastructure Validation  ✅
+K3s Variables              ✅
+K3s Server Role            ✅
+K3s Variable Fix           ✅
+K3s Control Plane          ✅
+K3s Installation           ✅
+Single Node Cluster        ✅
+Variable Loading Fix       ✅
+Worker Join Debugging      ✅ Root Cause Found
+Cluster Validation         ✅
+ArgoCD                     ⬜
+GitOps                     ⬜
+Monitoring                 ⬜
+Route53                    ⬜
+Documentation              ⬜
 
 Phase 9: Kubernetes (k3s)
 Control Plane
 
-    Install k3s Server
+✅  Install k3s Server
 
-    Retrieve Node Token
+✅  Retrieve Node Token
 
-    Verify Control Plane
+✅  Verify Control Plane
 
 Workers
 
-    Join Worker 1
+✅  Join Worker 1
 
-    Join Worker 2
+✅  Join Worker 2
 
-    Verify Cluster Nodes
+✅  Verify Cluster Nodes
 
 Validation
 
-    kubectl get nodes
+✅  kubectl get nodes
 
-    Verify Ready Status
+✅  Verify Ready Status
+
+Where we are in the Capstone
+Section 2 — Infrastructure (Terraform)
+
+Status:
+
+✅ Complete
+
+You have:
+
+    VPC
+
+    Subnets
+
+    Security Groups
+
+    1 control plane
+
+    2 workers
+
+    Remote state
+
+    Outputs
+
+Section 3 — Cluster Bring-up (Ansible)
+
+Status:
+
+✅ Complete
+
+You have:
+
+✅  k3s_server role
+
+✅  k3s_agent role
+
+✅  joined workers
+
+✅  kubeconfig fetched
+
+✅  local kubectl access
+
+    Acceptance Requirement
+
+✅ kubeconfig fetched locally
+✅ kubectl working from laptop
+✅ kubectl get nodes shows all nodes Ready
+
+Section 4 — Application on Kubernetes
+
+Status:
+
+⬜ Not started
+
+This is where most of the project marks live.
 
     Verify Internal Networking
 
-Phase 10: DNS
-Route53
-
-    Create app.alameendevops.click
-
-    Create api.alameendevops.click
-
-    Create argocd.alameendevops.click
-
-Validation
-
-    Verify DNS Resolution
 
 Phase 11: GitOps (ArgoCD)
 Installation
@@ -604,6 +397,44 @@ Frontend
 Validation
 
     Verify Application Access
+
+Ingress, DNS & TLS
+Route53
+
+    Create app.alameendevops.click
+
+    Create api.alameendevops.click
+
+    Create argocd.alameendevops.click
+
+Validation
+
+    Verify DNS Resolution
+
+Postgres
+
+□ StatefulSet
+□ PersistentVolumeClaim
+□ Secret
+□ Service
+□ Data Persistence Validation
+
+Cert Manager
+
+□ Install cert-manager
+□ ClusterIssuer
+□ Let's Encrypt
+□ TLS Certificate Validation
+
+High Availability
+
+□ Backend 2+ replicas
+□ Frontend 2+ replicas
+□ Pod Anti-Affinity
+OR
+□ TopologySpreadConstraints
+
+□ Verify pods run on different nodes
 
 Phase 13: CI/CD
 GitHub Actions

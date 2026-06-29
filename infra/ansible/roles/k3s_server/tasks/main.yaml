@@ -1,0 +1,21 @@
+---
+- name: Install K3s server
+  shell: curl -sfL https://get.k3s.io | sh -
+  environment:
+    INSTALL_K3S_VERSION: "{{ k3s_version }}"
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: Wait for node token
+  wait_for:
+    path: /var/lib/rancher/k3s/server/node-token
+    timeout: 120
+
+- name: Read node token
+  slurp:
+    src: /var/lib/rancher/k3s/server/node-token
+  register: node_token
+
+- name: Store node token
+  set_fact:
+    k3s_node_token: "{{ node_token.content | b64decode | trim }}"

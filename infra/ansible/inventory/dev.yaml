@@ -1,0 +1,24 @@
+all:
+  children:
+
+    control:
+      hosts:
+        control-plane:
+          ansible_host: 13.49.65.47
+          private_ip: 10.0.1.224
+
+    workers:
+      hosts:
+
+        worker1:
+          ansible_host: 13.51.106.41
+          private_ip: 10.0.1.99
+
+        worker2:
+          ansible_host: 51.21.167.4
+          private_ip: 10.0.2.249
+
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: ~/.ssh/capstone/capstone-devops.pem
+    ansible_python_interpreter: /usr/bin/python3

@@ -5,7 +5,6 @@
 *.tfvars
 !*.tfvars.example
 crash.log
-.terraform.lock.hcl
 
 # kubeconfig & cluster joins
 kubeconfig
@@ -32,3 +31,28 @@ charts/*.tgz
 *.swp
 .idea/
 .vscode/
+
+# additional entries:
+
+# Ansible
+*.retry
+
+# Python
+__pycache__/
+*.pyc
+
+# Kubernetes
+*.kubeconfig
+
+# Terraform plans
+*.tfplan
+plan.out
+phoenix
+capstone
+
+# Local secrets
+secrets.yaml
+secrets.yml
+
+# Logs
+*.log
