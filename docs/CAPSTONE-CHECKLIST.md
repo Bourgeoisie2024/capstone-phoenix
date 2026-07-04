@@ -347,16 +347,48 @@ You have:
 ✅ kubectl working from laptop
 ✅ kubectl get nodes shows all nodes Ready
 
+✅  Multi-node Ready cluster
+
+Evidence
+
+✅ Captured and committed
+Git
+
+✅ Committed and pushed
+
 Section 4 — Application on Kubernetes
-
-Status:
-
-⬜ Not started
-
-This is where most of the project marks live.
 
     Verify Internal Networking
 
+What You Have Completed
+
+✅ Namespace
+
+✅ ConfigMap
+
+✅ Secret template
+
+✅ Postgres StatefulSet
+
+✅ Postgres Headless Service
+
+✅ Postgres Storage (PVC)
+
+✅ Backend Deployment
+
+✅ Topology Spread Constraint
+
+✅ Resource Requests/Limits
+
+✅ Rolling Update Strategy
+
+✅ Pinned Backend Image Tag
+
+✅ Readiness Probe
+
+✅ Liveness Probe
+
+✅ Evidence Screenshots
 
 Phase 11: GitOps (ArgoCD)
 Installation

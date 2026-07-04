@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: taskapp-ingress
+  namespace: taskapp
+
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+
+spec:
+  ingressClassName: traefik
+
+  tls:
+    - hosts:
+        - app.alameendevops.click
+        - api.alameendevops.click
+
+      secretName: taskapp-tls
+
+  rules:
+    - host: app.alameendevops.click
+
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+
+            backend:
+              service:
+                name: frontend
+
+                port:
+                  number: 80
+
+    - host: api.alameendevops.click
+
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+
+            backend:
+              service:
+                name: backend
+
+                port:
+                  number: 5000

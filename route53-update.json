@@ -1,0 +1,55 @@
+{
+  "Comment": "Fix capstone DNS to point to K3s cluster nodes",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "app.alameendevops.click.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          { "Value": "13.49.65.47" },
+          { "Value": "13.51.106.41" },
+          { "Value": "51.21.167.4" }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "api.alameendevops.click.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          { "Value": "13.49.65.47" },
+          { "Value": "13.51.106.41" },
+          { "Value": "51.21.167.4" }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "portainer.alameendevops.click.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          { "Value": "13.49.65.47" },
+          { "Value": "13.51.106.41" },
+          { "Value": "51.21.167.4" }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "alameendevops.click.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          { "Value": "13.49.65.47" }
+        ]
+      }
+    }
+  ]
+}
