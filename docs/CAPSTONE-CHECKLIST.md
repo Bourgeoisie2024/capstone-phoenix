@@ -1,396 +1,352 @@
-#### TS-Academy DevOps Capstone Project Checklist
-Goal
+TS-Academy DevOps Capstone Project Checklist
 
-Target Score: 90+ (Distinction)
+Repository:
 
-Core Requirements:
+    Fork of capstone-phoenix
 
-    Infrastructure as Code (Terraform)
+    Working branch: capstone-build
 
-    Configuration Management (Ansible)
-
-    Kubernetes (k3s)
-
-    CI/CD
-
-    GitOps (ArgoCD)
-
-Advanced Requirements:
-
-    Horizontal Pod Autoscaler (HPA)
-
-    Network Policies
-
-    Observability (Prometheus + Grafana)
-
-Phase 1: Repository Setup
+Phase 1 — Repository & Project Setup
 GitHub
 
-    Fork capstone-phoenix repository
+  ✅  Fork capstone-phoenix repository
 
-    Clone repository locally
+  ✅  Clone repository locally
 
-    Create capstone-build branch
+  ✅  Create capstone-build branch
 
-    Configure Git remotes
+  ✅  Configure Git remotes
 
-    Push branch to GitHub
+  ✅  Push branch to GitHub
 
 Project Preparation
 
-    Create CAPSTONE-CHECKLIST.md
+  ✅  Create CAPSTONE-CHECKLIST.md
 
-    Verify local repository structure
+  ✅  Verify repository structure
 
-    Verify AWS account access
+  ✅  Verify AWS account access
 
-    Verify Route53 hosted zone
+  ✅  Verify Route53 hosted zone
 
-Phase 2: Legacy Infrastructure Cleanup
+Phase 2 — Legacy Infrastructure Cleanup
 Discovery
 
-    Investigate existing EC2 instances
+  ✅  Investigate existing EC2 instances
 
-    Locate Terraform state
+  ✅  Locate Terraform state
 
-    Review legacy infrastructure
+  ✅  Review legacy infrastructure
 
 Cleanup
 
-    Review Terraform destroy plan
+  ✅  Review Terraform destroy plan
 
-    Destroy legacy infrastructure
+  ✅  Destroy legacy infrastructure
 
-    Remove old EC2 instances
+  ✅  Remove old EC2 resources
 
-    Remove old RDS resources
+  ✅  Remove old VPC resources
 
-    Remove old VPC resources
+  ✅  Remove old NAT Gateways
 
-    Remove old NAT Gateways
+  ✅  Verify AWS cleanup completed
 
-    Verify AWS cleanup completed
-
-Phase 3: Terraform Backend
+Phase 3 — Terraform Backend
 Remote State
 
-    Create S3 backend bucket
+  ✅  Create S3 backend bucket
 
-    Enable bucket versioning
+  ✅  Enable bucket versioning
 
-    Enable bucket encryption
+  ✅  Enable bucket encryption
 
-    Create DynamoDB lock table
+  ✅  Create DynamoDB lock table
 
-    Configure backend.tf
+  ✅  Configure backend.tf
 
-    Initialize Terraform backend
+  ✅  Initialize Terraform backend
 
-    Verify remote state storage
+  ✅  Verify remote state storage
 
-    Verify state locking
+  ✅  Verify state locking
 
-Phase 4: Terraform Structure
-Repository Layout
+Phase 4 — Terraform Infrastructure
+Modular Structure
 
-    Create infra/terraform
+  ✅  Create network module
 
-    Create modules/network
+  ✅  Create security module
 
-    Create modules/security
+  ✅  Create compute module
 
-    Create modules/compute
+  ✅  Create DNS module structure
 
-    Create modules/dns
+  ✅  Use Terraform variables
 
-    Create root Terraform files
+  ✅  Use Terraform outputs
 
-Standards
+  ✅  Dynamic AMI lookup
 
-    Remove hardcoded infrastructure values
+  ✅  No hardcoded infrastructure values
 
-    Use variables and tfvars
-
-    Use module outputs
-
-    Use dynamic AMI lookup
-
-    Follow Infrastructure-as-Code principles
-
-Phase 5: Network Module
 Networking
 
-    Create VPC
+  ✅  Create VPC
 
-    Create Internet Gateway
+  ✅  Create Internet Gateway
 
-    Create Public Subnet A
+  ✅  Create Public Subnet A
 
-    Create Public Subnet B
+  ✅  Create Public Subnet B
 
-    Create Route Table
+  ✅  Create Route Tables
 
-    Create Route Associations
+  ✅  Create Route Associations
 
-Dynamic Configuration
+Security
 
-    Dynamic Availability Zones
+  ✅  Control Plane Security Group
 
-    Parameterized VPC CIDR
+  ✅  Worker Security Group
 
-    Export Network Outputs
+  ✅  Cluster Internal Communication Rules
 
-Validation
+  ✅  SSH Access Rules
 
-    Terraform Validate
+Compute
 
-    Terraform Plan Review
+  ✅  Create Control Plane Node
 
-    Terraform Apply
+  ✅  Create Worker Node 1
 
-    Verify VPC
+  ✅  Create Worker Node 2
 
-    Verify Subnets
+  ✅  Export Public IP Outputs
 
-    Verify Routing
-
-Phase 6: Security Module
-Security Groups
-
-    Create Control Plane Security Group
-
-    Create Worker Security Group
-
-    Configure Cluster Communication
-
-    Configure SSH Access
-
-    Export Security Outputs
+  ✅  Export Private IP Outputs
 
 Validation
 
-    Terraform Validate
+  ✅  Terraform Validate
 
-    Terraform Plan Review
+  ✅  Terraform Plan
 
-    Terraform Apply
+  ✅  Terraform Apply
 
-    Verify Security Groups
+  ✅  Verify VPC
 
-Phase 7: Compute Module
-Access
+  ✅  Verify Subnets
 
-    Create SSH Key Pair
+  ✅  Verify Routing
 
-    Secure PEM File
+  ✅  Verify Security Groups
 
-    Verify Key Pair in AWS
+  ✅  Verify Running EC2 Instances
 
-EC2 Infrastructure
+  ✅  Verify SSH Access
 
-    Dynamic Ubuntu 22.04 AMI
+Phase 5 — Ansible Cluster Provisioning
+Ansible Structure
 
-    Create Control Plane Node
+  ✅  Configure ansible.cfg
 
-    Create Worker Node 1
+  ✅  Create inventory
 
-    Create Worker Node 2
+  ✅  Configure group_vars
 
-Outputs
+  ✅  Create playbooks
 
-    Control Plane Public IP
+  ✅  Create roles
 
-    Worker 1 Public IP
+Cluster Provisioning
 
-    Worker 2 Public IP
+  ✅  Install k3s server role
 
-    Instance IDs
+  ✅  Retrieve node token
 
-    Terraform Outputs
+  ✅  Install k3s agent role
 
-Validation
+  ✅  Join Worker 1
 
-    Verify Terraform State
+  ✅  Join Worker 2
 
-    Verify EC2 Instances Running
+  ✅  Fetch kubeconfig locally
 
-    Verify SSH Access to Control Plane
-
-    Verify SSH Access to Worker 1
-
-    Verify SSH Access to Worker 2
-
-Infrastructure Phase Complete ✅
-
-Phase 8: Ansible Preparation
-Structure
-
-    Create ansible.cfg
-
-    Create inventories/dev
-
-    Create group_vars
-
-    Create playbooks directory
-
-    Create roles directory
-
-Inventory
-
-    Create hosts.ini
-
-    Add Control Plane Host
-
-    Add Worker 1 Host
-
-    Add Worker 2 Host
-
-Connectivity
-
-    Configure SSH User
-
-    Configure Private Key
-
-    Run ansible all -m ping
-
-    Verify Connectivity ✅
-    
-## We can now officially mark:
-
-Terraform Infrastructure   ✅
-Ansible Foundation         ✅
-Server Preparation         ✅
-K3s Role Structure         ✅
-Infrastructure Validation  ✅
-K3s Variables              ✅
-K3s Server Role            ✅
-K3s Variable Fix           ✅
-K3s Control Plane          ✅
-K3s Installation           ✅
-Single Node Cluster        ✅
-Variable Loading Fix       ✅
-Worker Join Debugging      ✅ Root Cause Found
-Cluster Validation         ✅
-ArgoCD                     ⬜
-GitOps                     ⬜
-Monitoring                 ⬜
-Route53                    ⬜
-Documentation              ⬜
-
-Phase 9: Kubernetes (k3s)
-Control Plane
-
-✅  Install k3s Server
-
-✅  Retrieve Node Token
-
-✅  Verify Control Plane
-
-Workers
-
-✅  Join Worker 1
-
-✅  Join Worker 2
-
-✅  Verify Cluster Nodes
+  ✅  Rewrite kubeconfig server endpoint
 
 Validation
 
-✅  kubectl get nodes
+  ✅  Ansible connectivity verified
 
-✅  Verify Ready Status
+  ✅  Playbooks execute successfully
 
-Where we are in the Capstone
-Section 2 — Infrastructure (Terraform)
+  ✅  kubectl access from local machine
 
-Status:
+  ✅  All nodes Ready
 
-✅ Complete
+Cluster Status
 
-You have:
+  ✅  Multi-node cluster operational
 
-    VPC
+  ✅  Control Plane Ready
 
-    Subnets
+  ✅  Worker 1 Ready
 
-    Security Groups
+  ✅  Worker 2 Ready
 
-    1 control plane
+Phase 6 — Kubernetes Core Application
+Namespace
 
-    2 workers
+  ✅  Create dedicated namespace
 
-    Remote state
+Configuration
 
-    Outputs
+  ✅  ConfigMap
 
-Section 3 — Cluster Bring-up (Ansible)
+  ✅  Secret
 
-Status:
+  ✅  Secret values protected
 
-✅ Complete
+Postgres
 
-You have:
+  ✅  StatefulSet
 
-✅  k3s_server role
+  ✅  Headless Service
 
-✅  k3s_agent role
+  ✅  PVC
 
-✅  joined workers
+  ✅  Persistent Storage Configured
 
-✅  kubeconfig fetched
+Backend
 
-✅  local kubectl access
+  ✅  Deployment
 
-    Acceptance Requirement
+  ✅  Service
 
-✅ kubeconfig fetched locally
-✅ kubectl working from laptop
-✅ kubectl get nodes shows all nodes Ready
+  ✅  Resource Requests
 
-✅  Multi-node Ready cluster
+  ✅  Resource Limits
 
-Evidence
+  ✅  Readiness Probe
 
-✅ Captured and committed
-Git
+  ✅  Liveness Probe
 
-✅ Committed and pushed
+  ✅  Rolling Update Strategy
 
-Section 4 — Application on Kubernetes
+  ✅  Pinned Image Tag
 
-    Verify Internal Networking
+Frontend
 
-What You Have Completed
+  ✅  Deployment
 
-✅ Namespace
+  ✅  Service
 
-✅ ConfigMap
+  ✅  Multiple Replicas
 
-✅ Secret template
+  ✅  Resource Requests
 
-✅ Postgres StatefulSet
+  ✅  Resource Limits
 
-✅ Postgres Headless Service
+  ✅  Pinned Image Tag
 
-✅ Postgres Storage (PVC)
+High Availability
 
-✅ Backend Deployment
+  ✅  Backend 2+ Replicas
 
-✅ Topology Spread Constraint
+  ✅  Frontend 2+ Replicas
 
-✅ Resource Requests/Limits
+  ✅  TopologySpreadConstraints
 
-✅ Rolling Update Strategy
+    Verify Pods Distributed Across Nodes (Evidence)
 
-✅ Pinned Backend Image Tag
+Database Migration
 
-✅ Readiness Probe
+  ✅  Migration Job Created
 
-✅ Liveness Probe
+    Migration Job Evidence Captured
 
-✅ Evidence Screenshots
+Phase 7 — Ingress, DNS & TLS
+Traefik
 
-Phase 11: GitOps (ArgoCD)
+  ✅  Traefik Operational
+
+  ✅  LoadBalancer Service Working
+
+Route53
+
+  ✅  app.alameendevops.click
+
+  ✅  api.alameendevops.click
+
+  ✅  DNS Resolution Verified
+
+Cert-Manager
+
+  ✅  Install cert-manager
+
+  ✅  Install CRDs
+
+  ✅  Create ClusterIssuer
+
+  ✅  Configure Let's Encrypt
+
+TLS
+
+  ✅  Certificate Issued
+
+  ✅  TLS Secret Created
+
+  ✅  HTTPS Frontend Working
+
+  ✅  HTTPS Backend Working
+
+  ✅  Production Certificate Validation
+
+Phase 8 — Evidence Collection
+Infrastructure Evidence
+
+  ✅  Terraform Evidence
+
+  ✅  EC2 Evidence
+
+  ✅  Security Group Evidence
+
+Kubernetes Evidence
+
+  ✅  Nodes Ready
+
+  ✅  Pods Running
+
+  ✅  Services
+
+  ✅  Ingress
+
+  ✅  Certificates
+
+  ✅  TLS Secrets
+
+DNS & TLS Evidence
+
+  ✅  Route53 Records
+
+  ✅  DNS Resolution
+
+  ✅  HTTPS Frontend
+
+  ✅  HTTPS API
+
+  ✅  Browser Validation
+
+  ✅  Lock Icon Screenshot
+
+Repository Evidence
+
+  ✅  Evidence committed
+
+  ✅  Evidence pushed to GitHub
+
+Phase 9 — GitOps (ArgoCD)
 Installation
 
     Install ArgoCD
@@ -407,100 +363,61 @@ GitOps
 
     Enable Auto Sync
 
-Validation
-
-    Verify GitOps Deployment
-
-Phase 12: Application Deployment
-Backend
-
-    Deploy Backend
-
-    Configure Secrets
-
-    Configure ConfigMaps
-
-Frontend
-
-    Deploy Frontend
-
-    Configure Services
+    Verify Sync Health
 
 Validation
 
-    Verify Application Access
+    Commit Change
 
-Ingress, DNS & TLS
-Route53
+    Automatic Reconciliation
 
-    Create app.alameendevops.click
+    GitOps Demonstration Evidence
 
-    Create api.alameendevops.click
-
-    Create argocd.alameendevops.click
-
-Validation
-
-    Verify DNS Resolution
-
-Postgres
-
-□ StatefulSet
-□ PersistentVolumeClaim
-□ Secret
-□ Service
-□ Data Persistence Validation
-
-Cert Manager
-
-□ Install cert-manager
-□ ClusterIssuer
-□ Let's Encrypt
-□ TLS Certificate Validation
-
-High Availability
-
-□ Backend 2+ replicas
-□ Frontend 2+ replicas
-□ Pod Anti-Affinity
-OR
-□ TopologySpreadConstraints
-
-□ Verify pods run on different nodes
-
-Phase 13: CI/CD
+Phase 10 — CI/CD
 GitHub Actions
 
     Backend Workflow
 
     Frontend Workflow
 
-    Build Docker Images
+    Build Images
 
     Push Images
 
 Deployment
 
-    Trigger ArgoCD Sync
+    Trigger GitOps Deployment
 
-    Verify Automated Deployment
+    Automated Rollout
 
-Phase 14: Advanced Requirements
-Horizontal Pod Autoscaler
+    Deployment Evidence
+
+Phase 11 — Advanced Requirements
+Metrics Server
 
     Install Metrics Server
 
-    Configure HPA
+    Verify Metrics Collection
+
+Horizontal Pod Autoscaler
+
+    Create HPA
+
+    Load Test Application
 
     Verify Scaling
 
+    Capture Evidence
+
 Network Policies
 
-    Create NetworkPolicy
+    Default Deny Policy
 
-    Restrict Pod Communication
+    Backend Access Restrictions
 
-    Verify Enforcement
+    Postgres Access Restrictions
+
+    Validation Evidence
 
 Observability
 Prometheus
@@ -515,55 +432,152 @@ Grafana
 
     Create Dashboards
 
-    Verify Metrics Visualization
+    Capture Dashboard Evidence
 
-Phase 15: Security Hardening
+Phase 12 — Security Hardening
+Infrastructure
 
     Restrict SSH CIDR
 
-    Restrict Kubernetes API Access
+    Restrict Kubernetes API Exposure
 
-    Review Security Groups
+Kubernetes
 
-    Review Secrets Management
+    Review Secret Management
 
-Phase 16: Documentation & Submission
-Documentation
+    Review Image Security
+
+    Review Resource Limits
+
+Advanced Hardening (Distinction)
+
+    securityContext
+
+    runAsNonRoot
+
+    seccompProfile RuntimeDefault
+
+    Drop Linux Capabilities
+
+Phase 13 — Documentation
+Architecture
+
+    ARCHITECTURE.md
 
     Architecture Diagram
 
-    Infrastructure Documentation
+    Request Flow Documentation
 
-    Deployment Documentation
+Operations
 
-    Troubleshooting Notes
+    RUNBOOK.md
 
-Final Validation
+    Deployment Procedures
 
-    Terraform State Healthy
+    Rollback Procedures
 
-    Ansible Working
+    Recovery Procedures
 
-    Kubernetes Healthy
+Cost Analysis
 
-    GitOps Working
+    COST.md
 
-    CI/CD Working
+    Monthly Cost Breakdown
 
-    HPA Working
+    Cost Reduction Strategy
 
-    Network Policies Working
+Phase 14 — Final Validation
+Core Requirements
 
-    Prometheus Working
+  ✅  Terraform
 
-    Grafana Working
+  ✅  Ansible
+
+  ✅  Multi-node k3s
+
+  ✅  Stateful Application
+
+  ✅  DNS
+
+  ✅  TLS
+
+  ✅  HTTPS
+
+Distinction Requirements
+
+    GitOps Operational
+
+    HPA Operational
+
+    Network Policies Operational
+
+    Prometheus Operational
+
+    Grafana Operational
 
 Submission
 
-    Final Repository Review
+  ✅  GitHub Repository Available
+
+  ✅  Pull Request Created
+
+  ✅  Initial Submission Completed
+
+    Final Submission Update
 
     Final Demo Preparation
 
-    Capstone Submission
+Current Progress Summary
+Completed
 
-This version reflects everything we have actually completed so far, removes duplication, follows the order a reviewer would expect, and clearly separates Core Requirements, Advanced Requirements, and Final Submission Requirements. I would use this as your master checklist going forward.
+    Terraform Infrastructure
+
+    Remote State Backend
+
+    AWS Infrastructure
+
+    Ansible Provisioning
+
+    Multi-node K3s Cluster
+
+    Kubernetes Application Deployment
+
+    Postgres StatefulSet
+
+    Route53 DNS
+
+    Traefik Ingress
+
+    Cert-Manager
+
+    Let's Encrypt TLS
+
+    HTTPS Validation
+
+    Evidence Collection
+
+    GitHub Submission
+
+    Pull Request Creation
+
+Remaining High-Priority Work
+
+    ArgoCD
+
+    GitOps Automation
+
+    Metrics Server
+
+    HPA
+
+    Network Policies
+
+    Prometheus
+
+    Grafana
+
+    Architecture Documentation
+
+    Runbook Documentation
+
+    Cost Documentation
