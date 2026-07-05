@@ -20,10 +20,4 @@ resources:
   - ingress/clusterissuer.yaml
   - ingress/ingress.yaml
 
-secretGenerator:
-  - name: taskapp-secret
-    type: Opaque
-    literals:
-      - DATABASE_USER=taskappuser
-      - DATABASE_PASSWORD=REPLACE_ME
-      - SECRET_KEY=REPLACE_ME
+  - secrets/sealed-secret.yaml
