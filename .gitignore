@@ -13,15 +13,16 @@ k3s.yaml
 node-token
 *.token
 
-# secrets / env
+# secrets / env (safe GitOps version)
 .env
 .env.*
 !.env.example
-*secret*.yaml
+
+# ONLY ignore raw secret manifests
+*secret.yaml
+!*sealed-secret.yaml
 !*secret*.example.yaml
-*.pem
-*.key
-id_rsa*
+
 
 # argo / helm local
 charts/*.tgz
