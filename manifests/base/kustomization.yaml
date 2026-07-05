@@ -5,7 +5,6 @@ resources:
   - namespace/namespace.yaml
 
   - configmap/configmap.yaml
-  - secrets/secret.yaml
 
   - postgres/pvc.yaml
   - postgres/service.yaml
@@ -20,3 +19,11 @@ resources:
 
   - ingress/clusterissuer.yaml
   - ingress/ingress.yaml
+
+secretGenerator:
+  - name: taskapp-secret
+    type: Opaque
+    literals:
+      - DATABASE_USER=taskappuser
+      - DATABASE_PASSWORD=REPLACE_ME
+      - SECRET_KEY=REPLACE_ME
