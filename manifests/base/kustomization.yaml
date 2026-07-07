@@ -20,4 +20,6 @@ resources:
   - ingress/clusterissuer.yaml
   - ingress/ingress.yaml
 
+  - networkpolicy
+
   - secrets/sealed-secret.yaml
