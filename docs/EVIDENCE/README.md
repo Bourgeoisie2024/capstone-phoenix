@@ -1,12 +1,40 @@
-# EVIDENCE
+# Evidence
 
-Drop screenshots/logs here, named so a grader knows what each proves:
+This directory contains screenshots and logs demonstrating the successful completion of the DevOps Capstone requirements.
 
-- `nodes-ready.png` — multi-node `kubectl get nodes`
-- `pods-spread.png` — replicas on different nodes (`-o wide`)
-- `tls-valid.png` — valid cert (curl -vI / SSL Labs)
-- `pvc-persist.log` — data survives a Pod kill
-- `zero-downtime.log` — unbroken 200s during a rollout
-- `hpa-scale.png` — replicas climbing under load
-- `argocd-synced.png` — Argo CD Synced + Healthy
-- `failover.png` — app up after a node drain
+## metrics-server
+- Metrics Server deployment
+- Pod metrics
+
+## hpa
+- Horizontal Pod Autoscaler
+- Autoscaling demonstration
+
+## networkpolicy
+- Default deny policy
+- Allowed traffic
+- Blocked traffic verification
+
+## prometheus
+- Prometheus targets
+- Metrics collection
+
+## grafana
+- Dashboards
+- Cluster metrics
+
+## tls
+- HTTPS certificate validation
+
+## gitops
+- Argo CD synchronization
+- GitOps deployment evidence
+
+## rollout
+- Zero-downtime rolling update
+
+## persistence
+- PostgreSQL data persistence
+
+## failover
+- Worker node drain and pod rescheduling
