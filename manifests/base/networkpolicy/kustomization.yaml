@@ -7,3 +7,5 @@ resources:
   - allow-postgres.yaml
   - allow-backend.yaml
   - allow-frontend.yaml
+  - allow-backend-egress-postgres.yaml
+
