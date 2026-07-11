@@ -6,7 +6,6 @@ metadata:
   namespace: taskapp
 
 spec:
-  replicas: 3
   revisionHistoryLimit: 2
 
   strategy:
