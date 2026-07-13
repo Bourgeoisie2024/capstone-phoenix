@@ -1,47 +1,144 @@
-# Architecture (fill this in)
+# Architecture
 
-## 1. Topology diagram
-> Draw it (ASCII, Excalidraw, draw.io — anything). Show: your nodes, where each TaskApp
-> tier runs, the ingress controller, and the request path.
+## Overview
 
-```
-[ replace with your diagram ]
+This project deploys a production-style TaskApp application on a highly available Kubernetes cluster running on AWS. The infrastructure is provisioned using Terraform, configured with Ansible, and managed through GitOps using Argo CD. Security is enhanced through HTTPS, Kubernetes NetworkPolicies, and Sealed Secrets, while Prometheus and Grafana provide monitoring and observability.
 
-  Internet ──DNS──▶ taskapp.<you>.dev / api.<you>.dev
-        │
-        ▼
-  ingress controller (node: ____)  ──TLS terminated by cert-manager──┐
-        │                                                            │
-        ▼                                                            ▼
-  frontend Service ──▶ frontend Pods (nodes: __, __)        backend Service ──▶ backend Pods (nodes: __, __)
-                              │  /api proxy                              │
-                              └────────────────────────────────────────▶│
-                                                                         ▼
-                                                          postgres Service ──▶ postgres-0 (PVC on node __)
-```
+## High-Level Architecture
 
-## 2. Node & network
-- Nodes (role, size, AZ/region): …
-- CIDR / subnet choices and why: …
-- Firewall: what's open to the world, what's internal, and why `6443` is closed: …
+                    Internet
+                        │
+                        ▼
+                  Route53 DNS
+                        │
+                        ▼
+               Traefik Ingress Controller
+                        │
+         ┌──────────────┴──────────────┐
+         ▼                             ▼
+Frontend Service                 Backend Service
+         │                             │
+    React Pods                    Flask Pods
+                                        │
+                                        ▼
+                              PostgreSQL Service
+                                        │
+                                        ▼
+                          PostgreSQL StatefulSet
+                                        │
+                                        ▼
+                         Persistent Volume Claim
 
-## 3. Request flow (one paragraph)
-> DNS → ingress → TLS → frontend → /api → backend → Postgres. Be specific about names/ports.
+        Argo CD ─────────────► Kubernetes Cluster
 
-## 4. The single-server assumptions you fixed  ← graders look here
-> For each, name the assumption that was safe on one box but breaks on a cluster, and the
-> K8s mechanism you used. Minimum: migrations, persistent storage, traffic routing,
-> self-healing, zero-downtime deploys, secrets.
+        Sealed Secrets ──────► Secret Management
 
-| Single-server assumption | Why it breaks at scale | How you fixed it |
-|---|---|---|
-| migrate-on-boot in the entrypoint | 2+ replicas race on `alembic upgrade head` | … |
-| named volume on the host | Pods reschedule across nodes | … |
-| `ports:` published on the host | many Pods, many nodes, one front door needed | … |
-| … | … | … |
+        Prometheus ──────────► Metrics Collection
 
-## 5. Choices & trade-offs
-- Raw YAML vs Helm vs kustomize — why: …
-- ingress-nginx vs k3s Traefik — why: …
-- CNI / NetworkPolicy enforcement — what and why: …
-- Secrets approach (out-of-band vs Sealed/External Secrets) — why: …
+        Grafana ─────────────► Monitoring Dashboards
+
+## Infrastructure
+
+The platform is deployed on AWS using Infrastructure as Code.
+
+Components include:
+
+   - AWS VPC
+
+   - Public networking
+
+   - Route53 DNS
+
+   - Three EC2 instances
+
+       - One Control Plane node
+
+       - Two Worker nodes
+
+   - Security Groups
+
+   - Kubernetes (K3s)
+
+Terraform provisions the cloud infrastructure while Ansible configures the operating system and installs Kubernetes across all nodes.
+
+## Request Flow
+
+A client accesses the application through the configured Route53 DNS record.
+
+The request reaches the Traefik Ingress Controller, where HTTPS is terminated using certificates issued by Cert-Manager and Let's Encrypt.
+
+Traefik routes frontend requests to the React frontend service. API requests are forwarded to the Flask backend service, which communicates with the PostgreSQL StatefulSet through an internal Kubernetes Service. Database data is stored on persistent volumes to ensure it survives pod restarts and rescheduling.
+
+## High Availability
+
+The application is designed to remain available during failures and updates.
+
+Key mechanisms include:
+
+   - Multi-node Kubernetes cluster
+
+   - Replica-based Deployments
+
+   - Kubernetes Services for load balancing
+
+   - Stateful PostgreSQL deployment with persistent storage
+
+   - Persistent storage
+
+   - Rolling Updates
+
+   - Horizontal Pod Autoscaler
+
+   - Worker node failover capability
+
+   - Kubernetes self-healing
+
+## Security
+
+Security features implemented include:
+
+   - HTTPS using Cert-Manager and Let's Encrypt
+
+   - Kubernetes NetworkPolicies
+
+   - Sealed Secrets
+
+   - Namespace isolation
+
+   - Secure GitOps deployment using Argo CD
+
+## Monitoring
+
+Cluster monitoring is implemented using:
+
+   - Metrics Server
+
+   - Prometheus
+
+   - Grafana
+
+These components provide cluster resource metrics, workload monitoring, and dashboard visualization.
+
+## GitOps Workflow
+
+Application manifests are stored in Git and synchronized automatically using Argo CD.
+
+Any approved changes committed to the repository are reconciled with the Kubernetes cluster, ensuring that the deployed state matches the desired configuration stored in version control.
+
+## Design Decisions
+
+| Component | Decision |
+|-----------|----------|
+| Terraform | Infrastructure provisioning on AWS |
+| Ansible | Automated Kubernetes node configuration |
+| K3s | Lightweight multi-node Kubernetes distribution |
+| Traefik | Built-in K3s ingress controller |
+| Argo CD | Declarative GitOps deployment |
+| Sealed Secrets | Secure secret management within Git |
+| Prometheus | Cluster monitoring |
+| Grafana | Metrics visualization |
+| PostgreSQL StatefulSet | Persistent database storage |
+
+## Summary
+
+The completed platform demonstrates a production-oriented Kubernetes deployment with Infrastructure as Code, automated configuration management, GitOps, secure secret handling, monitoring, and high availability. The architecture is designed to be repeatable, scalable, and maintainable while following modern DevOps best practices.
