@@ -699,9 +699,9 @@ Completed
 
   ✅  Repository Cleanup
 
-Remaining Work
+  ✅  Final Review
 
-  ⬜  Final Review
+Remaining Work
 
   ⬜  Pull Request Update
 
