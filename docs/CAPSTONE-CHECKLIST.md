@@ -692,12 +692,12 @@ Completed
   ✅  README.md
 
   ✅  ARCHITECTURE.md
-  
+
+  ✅  RUNBOOK.md
+
+  ✅  COST.md
+
 Remaining Work
-
-  ⬜  RUNBOOK.md
-
-  ⬜  COST.md
 
   ⬜  Repository Cleanup
 
