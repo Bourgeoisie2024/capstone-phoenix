@@ -27,6 +27,9 @@ spec:
 
     spec:
 
+      imagePullSecrets:
+        - name: ghcr-secret
+
       topologySpreadConstraints:
         - maxSkew: 1
 
