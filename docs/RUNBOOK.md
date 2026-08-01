@@ -559,6 +559,47 @@ Plain-text Kubernetes Secret manifests should not be committed to the repository
 
 ---
 
+# Initial Application Bootstrap
+
+After deploying the Kubernetes resources and completing database migrations, the application requires an initial administrative account.
+
+## Steps
+
+Deploy Kubernetes resources:
+
+```bash
+kubectl apply -k manifests/base
+```
+
+Verify PostgreSQL is running:
+
+```bash
+kubectl get pods -n taskapp
+```
+
+Create the first administrative user:
+
+```bash
+curl -X POST https://api.alameendevops.click/api/auth/signup \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"admin123"}'
+```
+
+Authenticate:
+
+```bash
+curl -X POST https://api.alameendevops.click/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"admin123"}'
+```
+
+Verify JWT authentication and application access through:
+
+https://app.alameendevops.click
+
+
+---
+
 # Summary
 
 The Phoenix Capstone platform combines Infrastructure as Code, Configuration Management, Kubernetes orchestration, GitOps, security, monitoring, and automated scaling into a production-style deployment. Following the procedures in this runbook enables consistent deployment, reliable operations, effective troubleshooting, and predictable recovery of the platform.

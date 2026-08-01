@@ -37,6 +37,47 @@ Frontend Service                 Backend Service
 
         Grafana ─────────────► Monitoring Dashboards
 
+## Initial Application Bootstrap
+
+After deploying the Kubernetes resources and completing database migrations, the application requires an initial administrative account.
+
+## Steps
+
+Deploy Kubernetes resources:
+
+```bash
+kubectl apply -k manifests/base
+```
+
+Verify PostgreSQL is running:
+
+```bash
+kubectl get pods -n taskapp
+```
+
+Create the first administrative user:
+
+```bash
+curl -X POST https://api.alameendevops.click/api/auth/signup \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"admin123"}'
+```
+
+Authenticate:
+
+```bash
+curl -X POST https://api.alameendevops.click/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"admin123"}'
+```
+
+Verify JWT authentication and application access through:
+
+https://app.alameendevops.click
+
+
+---
+
 ## Infrastructure
 
 The platform is deployed on AWS using Infrastructure as Code.
