@@ -44,7 +44,7 @@ spec:
       containers:
         - name: frontend
 
-          image: ghcr.io/bourgeoisie2024/project-phoenix-frontend:v1.0.3
+          image: ghcr.io/bourgeoisie2024/project-phoenix-frontend:v1.0.4
 
           imagePullPolicy: IfNotPresent
 
