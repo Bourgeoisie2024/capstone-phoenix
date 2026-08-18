@@ -8,6 +8,12 @@ The solution provisions cloud infrastructure using Infrastructure as Code, confi
 
 The goal of the project is to demonstrate modern DevOps practices including automation, scalability, security, observability, and high availability.
 
+## Infrastructure Decommissioned
+
+The AWS infrastructure used for the Capstone Phoenix deployment was successfully decommissioned after project completion. This was an intentional cost-control measure to prevent ongoing AWS charges.
+
+The Terraform, Ansible, Kubernetes, GitOps, monitoring, security, documentation, and evidence artifacts remain in this repository as a complete record of the project.
+
 ## Project Objectives
 
    - Provision AWS infrastructure using Terraform
